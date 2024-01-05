@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const port = 3000;
 const { generateToken04 } = require("./server/zegoServerAssistant");
+
+app.use(cors());
 
 app.get("/api/access_token", (req, res) => {
   const appID = 1895976251;
@@ -17,8 +20,7 @@ app.get("/api/access_token", (req, res) => {
     effectiveTimeInSeconds,
     payload
   );
-  // console.log("token:", token);
-  // res.json({ appID, serverSecret, userId, effectiveTimeInSeconds, payload });
+  
   res.json({ token });
 });
 
